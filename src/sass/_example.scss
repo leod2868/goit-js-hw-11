@@ -1,28 +1,88 @@
-.example {
+* {
+  box-sizing: border-box;
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fafafa;
+  color: #212121;
   line-height: 1.5;
-  background-color: #fff;
-  color: #2f2f37;
-  max-width: 960px;
-  padding: 16px;
 }
 
-.example code {
-  font-family: monospace;
-  font-size: 16px;
-  font-weight: 700;
-  background-color: #ff6b0a;
-  color: #fff;
-  padding: 2px 6px;
-  border-radius: 2px;
+p {margin: 0;}
+
+a {text-decoration: none;}
+
+.form-conteiner {
+width: 100%;
+padding-top: 10px ;
+padding-bottom: 10px;
+position: fixed;
+background-color: cornflowerblue;
+z-index: 1;
 }
 
-.example .background {
-  height: 240px;
-  // ❗️❗️❗️ The path to images from a SASS file
-  // is always the same as from the css folder.
-  background-image: url('../images/logo.png');
-  background-size: cover;
-  background-position: center;
+.search-form {
+width: 100% ;
+display: flex;
+justify-content: center;
+}
+
+.search-form input {
+width: 20%;
+border: none;
+outline: none;
+padding: 8px 10px;
+border-radius: 4px 0 0 4px;
+background-color: #fafafa;
+font: inherit;
+}
+
+.search-form button {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 2.5em;
+border: none;
+cursor: pointer;
+border-radius: 0 4px 4px 0;
+background-color: rgb(146, 134, 134);
+}
+
+.search-form button:hover,
+.search-form button:focus {
+ background-color: rgb(209, 202, 202);
+ transition: all 0.4s;
+}
+
+.gallery-conteiner {
+
+padding-left: 15px;
+padding-right: 15px;
+padding-bottom: 30px;
+
+
+@media screen and (min-width: 480px) {
+    width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+@media screen and (min-width: 768px) {
+  width: 768px;
+}
+
+@media screen and (min-width: 1200px) {
+  width: 768px;
+}
+@media screen and (min-width: 1440px) {
+  width: 1440px;
+}
+}
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
 }
