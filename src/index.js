@@ -1,4 +1,4 @@
-import './sass/index.scss';
+import './css/styles.css';
 import { renderGallery } from './rendergallery';
 import Notiflix from 'notiflix';
 
