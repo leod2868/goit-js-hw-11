@@ -9,7 +9,7 @@ function renderGallery(images) {
         return `
          <a class="gallery-link" href="${largeImageURL}">
             <div class="photo-card">
-               <img  class="gallery-item"  src=${webformatURL}"" alt="${tags}" loading="lazy" />
+               <img  class="gallery-item" src="${webformatURL}" alt="${tags}" loading="lazy" />
                <div class="info">
                  <p class="info-item"><b>Likes</b>${likes}</p>
                  <p class="info-item"><b>Views</b>${views}</p>
