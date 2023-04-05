@@ -1,7 +1,7 @@
 import './css/styles.css';
 import { renderGallery } from './rendergallery';
 import Notiflix from 'notiflix';
-
+import ApiService from './apiservis';
 
 
 
@@ -12,20 +12,20 @@ const refs = {
     loadMoreBtn: document.querySelector('.load-more'),
 }
 const perPage = 40;
-
+let query = '';
 
 refs.searchForm.addEventListener('submit', onSearch)
+refs.loadMoreBtn.addEventListener('click', onLoadmore)
 
-
+const apiService = new ApiService()
 
 function onSearch(e) {
     e.preventDefault();
     query = e.currentTarget.elements.searchQuery.value.trim();
-    const KEY = '35072651-5af9f921021a18d865de9bf46';
-          
-    const url = 
- `https://pixabay.com/api/?key=${KEY}&q={query}&image_type=photo&orientation=horizontal&safesearch=true&page=1&per_page=${perPage}`
-
-    fetch(url).then(r => r.json()).then(console.log)
-    
+    apiService.fetchImages(query)
 }
+
+function onLoadmore() {
+   apiService.fetchImages(query)  
+
+ }
