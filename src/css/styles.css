@@ -69,7 +69,7 @@ a {
     padding-right: 15px;
     padding-bottom: 30px;
 
-
+/* 
     @media screen and (min-width: 480px) {
         width: 480px;
         margin-left: auto;
@@ -86,7 +86,7 @@ a {
 
     @media screen and (min-width: 1440px) {
         width: 1440px;
-    }
+    } */
 }
 
 .gallery,
