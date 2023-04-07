@@ -20,7 +20,7 @@ const apiService = new ApiService()
 function onSearch(e) {
     e.preventDefault();
     apiService.meaning = e.currentTarget.elements.searchQuery.value.trim();
-    onClean();
+    refs.gallery.innerHTML = '';
     apiService.resetPage()
     refs.loadMoreBtn.classList.add('is-hidden');
     if (apiService.meaning === '') {
@@ -79,11 +79,8 @@ function renderGallery(images) {
          </a> `
     }).join('');
    
-   refs. gallery.insertAdjacentHTML('beforebegin', markup);
+   refs.gallery.insertAdjacentHTML('beforebegin', markup);
 
 }
 
 
-function onClean() {
-    refs.gallery.innerHTML = '';
-}
