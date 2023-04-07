@@ -28,14 +28,14 @@ function onSearch(e) {
         return;
     }
     
-    apiService.fetchImages().then(({ hits, totalHits }) => {
-        if (totalHits === 0) {
+    apiService.fetchImages().then(({ data }) => {
+        if (data.totalHits === 0) {
           Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.') 
         } else {
-            renderGallery(hits);
+            renderGallery(data.hits);
             Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`)
              
-            if (totalHits > perPage) {
+            if (data.totalHits > perPage) {
               refs.loadMoreBtn.classList.remove('is-hidden')   
             }
         }
@@ -48,9 +48,9 @@ function onSearch(e) {
 
 
 function onLoadmore() {
-    apiService.fetchImages().then(({ hits, totalHits }) => {
-        renderGallery(hits);
-        const totalPages = Math.ceil(totalHits / perPage);
+    apiService.fetchImages().then(({ data }) => {
+        renderGallery(data.hits);
+        const totalPages = Math.ceil(data.totalHits / perPage);
         if (page > totalPages) {
             refs.loadMoreBtn.classList.add('is-hidden');
             Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
