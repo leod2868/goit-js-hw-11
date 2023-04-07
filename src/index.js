@@ -10,7 +10,7 @@ const refs = {
     loadMoreBtn: document.querySelector('.load-more'),
 }
 const perPage = 40;
-let page = 1;
+
 
 refs.searchForm.addEventListener('submit', onSearch)
 refs.loadMoreBtn.addEventListener('click', onLoadmore)
@@ -19,7 +19,7 @@ const apiService = new ApiService()
 
 function onSearch(e) {
     e.preventDefault();
-    page = 1;
+    
     apiService.meaning = e.currentTarget.elements.searchQuery.value.trim();
     refs.gallery.innerHTML = '';
     apiService.resetPage()
@@ -37,7 +37,8 @@ function onSearch(e) {
             Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`)
              
             if (data.totalHits > perPage) {
-              refs.loadMoreBtn.classList.remove('is-hidden')   
+                refs.loadMoreBtn.classList.remove('is-hidden') 
+                
             }
         }
     }).catch(error => console.log(error)).finally(() => {
@@ -49,9 +50,9 @@ function onSearch(e) {
 
 
 function onLoadmore() {
-    page += 1;
+    apiService.incrementPage()
     apiService.fetchImages().then(({ data }) => {
-
+        
         renderGallery(data.hits);
         const totalPages = Math.ceil(data.totalHits / perPage);
         if (page > totalPages) {
