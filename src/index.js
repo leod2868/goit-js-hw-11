@@ -66,7 +66,7 @@ function renderGallery(images) {
     const markup = images.map(image => {
         const { webformatURL, largeImageURL, tags, likes, views, comments, downloads } = image;
         return `
-        
+
             <div class="photo-card">
                 <a href="${largeImageURL}">
                      <img  class="gallery__image img" src="${webformatURL}" alt="${tags}" loading="lazy" />

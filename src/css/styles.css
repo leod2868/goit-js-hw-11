@@ -111,7 +111,9 @@ img {
    display: flex;
    justify-content: center;
    flex-wrap: wrap;
-    gap: 30px;
+   gap: 30px;
+   padding-top: 100px;
+   margin-bottom: 100px; 
 }
 
 .info {
@@ -171,6 +173,7 @@ img {
     color: rgb(0, 0, 0);
     cursor: pointer;
     font: inherit;
+    margin-bottom: 100px;
 }
 
 .load-more:hover {
