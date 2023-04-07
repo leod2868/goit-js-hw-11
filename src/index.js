@@ -10,6 +10,7 @@ const refs = {
     loadMoreBtn: document.querySelector('.load-more'),
 }
 const perPage = 40;
+let page = 1;
 
 refs.searchForm.addEventListener('submit', onSearch)
 refs.loadMoreBtn.addEventListener('click', onLoadmore)
@@ -18,7 +19,7 @@ const apiService = new ApiService()
 
 function onSearch(e) {
     e.preventDefault();
-    
+    page = 1;
     apiService.meaning = e.currentTarget.elements.searchQuery.value.trim();
     refs.gallery.innerHTML = '';
     apiService.resetPage()
@@ -28,12 +29,12 @@ function onSearch(e) {
         return;
     }
     
-    apiService.fetchImages().then(({ hits, totalHits }) => {
-        if (totalHits === 0) {
+    apiService.fetchImages().then(({ data }) => {
+        if (data.totalHits === 0) {
           Notiflix.Notify.failure('Sorry, there are no images matching your search query. Please try again.') 
         } else {
-            renderGallery(hits);
-            Notiflix.Notify.success(`Hooray! We found ${totalHits} images.`)
+            renderGallery(data.hits);
+            Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`)
              
             if (data.totalHits > perPage) {
               refs.loadMoreBtn.classList.remove('is-hidden')   
@@ -48,10 +49,11 @@ function onSearch(e) {
 
 
 function onLoadmore() {
-   
-    apiService.fetchImages().then(({ hits, totalHits }) => {
-        renderGallery(hits);
-        const totalPages = Math.ceil(totalHits / perPage);
+    page += 1;
+    apiService.fetchImages().then(({ data }) => {
+
+        renderGallery(data.hits);
+        const totalPages = Math.ceil(data.totalHits / perPage);
         if (page > totalPages) {
             refs.loadMoreBtn.classList.add('is-hidden');
             Notiflix.Notify.failure("We're sorry, but you've reached the end of search results.")
